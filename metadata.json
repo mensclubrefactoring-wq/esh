@@ -1,0 +1,6 @@
+{
+  "name": "Семейная лаборатория: Презентация и Пилот",
+  "description": "Презентация «Проблема → Решение» и интерактивный симулятор пилотного тест-драйва семейной жизни.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
