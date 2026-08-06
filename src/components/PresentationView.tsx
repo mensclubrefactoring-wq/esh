@@ -282,8 +282,8 @@ export const PresentationView: React.FC<PresentationViewProps> = ({ onOpenExport
                 </div>
               )}
 
-              {/* Special Slide 9 Coordinate Plane Visualization ("Я" vs "МЫ") */}
-              {slide.id === 9 && (
+              {/* Special Coordinate Plane Visualization ("Я" vs "МЫ") */}
+              {(slide.title.includes('Координаты') || slide.id === 11) && (
                 <div className="bg-white border border-[#E8E2D8] p-5 rounded-[20px] shadow-sm space-y-3">
                   <div className="flex items-center justify-between text-xs font-bold text-[#29221D]">
                     <span>Координатная плоскость «Я» vs «МЫ»</span>

@@ -2,6 +2,7 @@ import React from 'react';
 import { AppView } from '../types';
 import { Presentation, Gamepad2, Layers, LineChart, Sparkles, Share2 } from 'lucide-react';
 import { User } from 'firebase/auth';
+import { PITCH_SLIDES } from '../data/slidesData';
 
 interface NavbarProps {
   currentView: AppView;
@@ -46,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               <Presentation className="w-4 h-4" />
-              <span>Презентация (1–11)</span>
+              <span>Презентация (1–{PITCH_SLIDES.length})</span>
             </button>
 
             <button
