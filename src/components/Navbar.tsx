@@ -46,7 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               }`}
             >
               <Presentation className="w-4 h-4" />
-              <span>Презентация (1–8)</span>
+              <span>Презентация (1–11)</span>
             </button>
 
             <button

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PITCH_SLIDES } from '../data/slidesData';
+import { exportToPptx } from '../lib/pptxExport';
 import {
   ChevronLeft,
   ChevronRight,
@@ -16,6 +17,8 @@ import {
   ArrowRight,
   TrendingDown,
   TrendingUp,
+  Download,
+  Loader2,
 } from 'lucide-react';
 
 interface PresentationViewProps {
@@ -60,6 +63,20 @@ export const PresentationView: React.FC<PresentationViewProps> = ({ onOpenExport
     navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const [isExportingPptx, setIsExportingPptx] = useState(false);
+
+  const handleQuickPptxExport = async () => {
+    setIsExportingPptx(true);
+    try {
+      await exportToPptx(PITCH_SLIDES);
+    } catch (err) {
+      console.error(err);
+      alert('Ошибка при скачивании PPTX');
+    } finally {
+      setIsExportingPptx(false);
+    }
   };
 
   return (
@@ -366,26 +383,40 @@ export const PresentationView: React.FC<PresentationViewProps> = ({ onOpenExport
         </div>
       </div>
 
-      {/* Footer Banner for Google Slides Export */}
-      <div className="mt-6 bg-white border border-[#E8E2D8] p-5 rounded-[20px] shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+      {/* Footer Banner for Presentations Export */}
+      <div className="mt-6 bg-white border border-[#E8E2D8] p-5 rounded-[20px] shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center space-x-3.5">
           <div className="w-10 h-10 rounded-2xl bg-[#D97706]/10 text-[#D97706] flex items-center justify-center shrink-0">
             <Share2 className="w-5 h-5" />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-[#29221D]">Нужна готовая презентация в Google Slides?</h4>
+            <h4 className="text-xs font-bold text-[#29221D]">Готовая презентация для встречи ({PITCH_SLIDES.length} слайдов)</h4>
             <p className="text-xs text-[#786C62]">
-              Экспортируйте все {PITCH_SLIDES.length} слайдов с вашей стилистикой одним кликом в свой Google Диск
+              Скачайте файл .pptx или сгенерируйте презентацию в вашем Google Диск
             </p>
           </div>
         </div>
-        <button
-          onClick={onOpenExportModal}
-          className="bg-[#D96B27] hover:bg-[#B85418] text-white font-bold px-4 py-2 rounded-xl text-xs transition-all shadow-sm shrink-0 flex items-center gap-2"
-        >
-          <span>Экспорт в Google Slides</span>
-          <ArrowRight className="w-3.5 h-3.5" />
-        </button>
+        <div className="flex items-center gap-2.5 w-full md:w-auto">
+          <button
+            onClick={handleQuickPptxExport}
+            disabled={isExportingPptx}
+            className="flex-1 md:flex-none bg-[#FAF6F0] hover:bg-[#F5EFE6] text-[#29221D] font-bold px-4 py-2.5 rounded-xl text-xs border border-[#E8E2D8] transition-all shadow-sm flex items-center justify-center gap-2"
+          >
+            {isExportingPptx ? (
+              <Loader2 className="w-4 h-4 animate-spin text-[#D96B27]" />
+            ) : (
+              <Download className="w-4 h-4 text-[#D96B27]" />
+            )}
+            <span>Скачать .pptx</span>
+          </button>
+          <button
+            onClick={onOpenExportModal}
+            className="flex-1 md:flex-none bg-[#D96B27] hover:bg-[#B85418] text-white font-bold px-4 py-2.5 rounded-xl text-xs transition-all shadow-sm flex items-center justify-center gap-2"
+          >
+            <span>Google Slides</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
     </div>
   );
