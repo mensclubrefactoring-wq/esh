@@ -86,14 +86,14 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
           </nav>
 
-          {/* Actions: Google Slides Export Button */}
+          {/* Actions: Export Presentation Button */}
           <div className="flex items-center space-x-3">
             <button
               onClick={onOpenExportModal}
               className="flex items-center space-x-2 bg-[#D96B27] hover:bg-[#B85418] text-white font-bold px-3.5 py-2 rounded-xl text-xs transition-all shadow-sm"
             >
               <Share2 className="w-3.5 h-3.5" />
-              <span className="whitespace-nowrap">Экспорт Google Slides</span>
+              <span className="whitespace-nowrap">Экспорт (.pptx)</span>
             </button>
           </div>
         </div>
