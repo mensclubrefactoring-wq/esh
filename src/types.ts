@@ -1,4 +1,4 @@
-export type AppView = 'presentation' | 'simulator' | 'cards' | 'metrics';
+export type AppView = 'simulator' | 'cards' | 'metrics';
 
 export interface SlideData {
   id: number;
@@ -21,6 +21,23 @@ export interface SlideData {
   tableData?: { col1: string; col2: string }[];
   speakerNotes: string;
 }
+
+export interface SecretDreamCard {
+  id: string;
+  title: string;
+  category: string;
+  text: string;
+  resourceCost: string;
+}
+
+export interface CompensationCard {
+  id: string;
+  title: string;
+  effect: string;
+  rule: string;
+}
+
+export type PitchSlide = SlideData;
 
 export interface WorkshopRole {
   id: string;
