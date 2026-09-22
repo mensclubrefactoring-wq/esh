@@ -1,20 +1,6 @@
 import React, { useState } from 'react';
 import { WORKSHOP_ROLES, CRISIS_CARDS, SHAME_QUESTIONS, DISCOVERY_PROMPTS } from '../data/workshopData';
 import { WorkshopRole, CrisisCard, ShameQuestion, UserPosition } from '../types';
-import {
-  Sparkles,
-  Candy,
-  Users,
-  Clock,
-  HelpCircle,
-  Compass,
-  CheckCircle2,
-  Heart,
-  MessageSquare,
-  ShieldAlert,
-  Shuffle,
-  RefreshCw,
-} from 'lucide-react';
 
 import zoomerKitchenImg from '../assets/images/zeast_kitchen_1790070911305.jpg';
 import genzGameImg from '../assets/images/zeast_friends_1790070927191.jpg';
@@ -56,6 +42,27 @@ export const WorkshopSimulator: React.FC = () => {
   const pickRandomCrisis = () => {
     const nextIdx = Math.floor(Math.random() * CRISIS_CARDS.length);
     setCurrentCrisis(CRISIS_CARDS[nextIdx]);
+  };
+
+  const getRoleIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'Coins':
+        return <span className="text-base shrink-0">🪙</span>;
+      case 'UtensilsCrossed':
+        return <span className="text-base shrink-0">🥢</span>;
+      case 'LifeBuoy':
+        return <span className="text-base shrink-0">🛟</span>;
+      case 'PartyPopper':
+        return <span className="text-base shrink-0">🪩</span>;
+      case 'HeartPulse':
+        return <span className="text-base shrink-0">🫀</span>;
+      case 'Telescope':
+        return <span className="text-base shrink-0">🔭</span>;
+      case 'FlameKindling':
+        return <span className="text-base shrink-0">🪵</span>;
+      default:
+        return <span className="text-base shrink-0">🧭</span>;
+    }
   };
 
   const submitSolution = () => {
@@ -132,7 +139,7 @@ export const WorkshopSimulator: React.FC = () => {
             Безопасное пространство поиграть во «взрослую жизнь» без нотаций и скучных лекций.
           </p>
           <div className="flex items-center gap-2 pt-1 text-xs text-[#29221D] font-semibold">
-            <Clock className="w-4 h-4 text-[#D96B27]" />
+            <span>⏱️</span>
             <span>3 часа • 4 стола по 4 участника</span>
           </div>
         </div>
@@ -153,31 +160,28 @@ export const WorkshopSimulator: React.FC = () => {
       {/* Workshop Block Tabs */}
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 bg-[#F5EFE6] p-1.5 rounded-[20px] border border-[#E8E2D8]">
         {[
-          { id: 1, title: '1. Разморозка', duration: '20 мин', icon: Candy },
-          { id: 2, title: '2. «Черновик»', duration: '60 мин', icon: Users },
-          { id: 3, title: '3. «Я vs МЫ»', duration: '30 мин', icon: Compass },
-          { id: 4, title: '4. Конверт', duration: '40 мин', icon: HelpCircle },
-          { id: 5, title: '5. Открытия', duration: '30 мин', icon: CheckCircle2 },
-        ].map((block) => {
-          const Icon = block.icon;
-          return (
-            <button
-              key={block.id}
-              onClick={() => setActiveBlock(block.id)}
-              className={`flex flex-col items-center justify-center p-3 rounded-xl text-xs font-bold transition-all ${
-                activeBlock === block.id
-                  ? 'bg-white text-[#D96B27] shadow-sm'
-                  : 'text-[#786C62] hover:text-[#29221D]'
-              }`}
-            >
-              <div className="flex items-center space-x-1">
-                <Icon className="w-3.5 h-3.5" />
-                <span className="truncate">{block.title}</span>
-              </div>
-              <span className="text-[10px] opacity-75 font-mono">{block.duration}</span>
-            </button>
-          );
-        })}
+          { id: 1, title: '1. Разморозка', duration: '20 мин', emoji: '🍬' },
+          { id: 2, title: '2. «Черновик»', duration: '60 мин', emoji: '🎲' },
+          { id: 3, title: '3. «Я vs МЫ»', duration: '30 мин', emoji: '⚖️' },
+          { id: 4, title: '4. Конверт', duration: '40 мин', emoji: '💌' },
+          { id: 5, title: '5. Открытия', duration: '30 мин', emoji: '✨' },
+        ].map((block) => (
+          <button
+            key={block.id}
+            onClick={() => setActiveBlock(block.id)}
+            className={`flex flex-col items-center justify-center p-3 rounded-xl text-xs font-bold transition-all ${
+              activeBlock === block.id
+                ? 'bg-white text-[#D96B27] shadow-sm'
+                : 'text-[#786C62] hover:text-[#29221D]'
+            }`}
+          >
+            <div className="flex items-center space-x-1.5">
+              <span className="text-sm">{block.emoji}</span>
+              <span className="truncate">{block.title}</span>
+            </div>
+            <span className="text-[10px] opacity-75 font-mono">{block.duration}</span>
+          </button>
+        ))}
       </div>
 
       {/* BLOCK 1: Разморозка */}
@@ -199,7 +203,7 @@ export const WorkshopSimulator: React.FC = () => {
             {/* Draw Candy Form */}
             <div className="bg-[#F5EFE6] p-5 rounded-2xl border border-[#E8E2D8] space-y-3.5">
               <h4 className="text-xs font-bold text-[#29221D] uppercase tracking-wider flex items-center gap-1.5">
-                <Candy className="w-4 h-4 text-[#D97706]" />
+                <span>🍬</span>
                 Вытянуть конфету
               </h4>
 
@@ -224,7 +228,7 @@ export const WorkshopSimulator: React.FC = () => {
                   onClick={drawCandy}
                   className="w-full bg-[#D96B27] hover:bg-[#B85418] text-white font-bold py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2 shadow-sm"
                 >
-                  <Shuffle className="w-4 h-4" />
+                  <span>🔀</span>
                   <span>Вытянуть случайную конфету</span>
                 </button>
               </div>
@@ -280,7 +284,7 @@ export const WorkshopSimulator: React.FC = () => {
               onClick={pickRandomCrisis}
               className="bg-[#D96B27] hover:bg-[#B85418] text-white font-bold text-xs px-3 py-2 rounded-xl flex items-center gap-1.5 transition-all shadow-sm"
             >
-              <RefreshCw className="w-3.5 h-3.5" />
+              <span>🎲</span>
               <span>Случайный кризис</span>
             </button>
           </div>
@@ -297,14 +301,17 @@ export const WorkshopSimulator: React.FC = () => {
                   <button
                     key={r.id}
                     onClick={() => setSelectedRole(r)}
-                    className={`p-3 rounded-xl border text-left text-xs transition-all ${
+                    className={`p-3 rounded-xl border text-left text-xs transition-all flex items-start gap-2.5 ${
                       selectedRole?.id === r.id
                         ? 'bg-[#D96B27]/10 border-[#D96B27] text-[#D96B27] font-bold'
                         : 'bg-[#F5EFE6] border-[#E8E2D8] text-[#4A3E37] hover:bg-[#EFE6D8]'
                     }`}
                   >
-                    <div className="font-bold">{r.title}</div>
-                    <p className="text-[11px] text-[#786C62] font-normal">{r.description}</p>
+                    <div className="mt-0.5">{getRoleIcon(r.iconName)}</div>
+                    <div>
+                      <div className="font-bold">{r.title}</div>
+                      <p className="text-[11px] text-[#786C62] font-normal mt-0.5">{r.description}</p>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -313,7 +320,7 @@ export const WorkshopSimulator: React.FC = () => {
             {/* Current Crisis Card */}
             <div className="bg-[#F5EFE6] p-5 rounded-2xl border border-[#E8E2D8] space-y-3.5">
               <div className="flex items-center gap-1.5 text-xs font-black text-[#29221D]">
-                <ShieldAlert className="w-4 h-4 text-[#D97706]" />
+                <span>🪤</span>
                 {currentCrisis.title}
               </div>
 
@@ -475,7 +482,7 @@ export const WorkshopSimulator: React.FC = () => {
               onClick={drawNewQuestion}
               className="bg-[#D96B27] hover:bg-[#B85418] text-white font-bold text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 transition-all shadow-sm"
             >
-              <HelpCircle className="w-4 h-4" />
+              <span>💌</span>
               <span>Следующий вопрос</span>
             </button>
           </div>
@@ -483,7 +490,7 @@ export const WorkshopSimulator: React.FC = () => {
           {selectedQuestion && (
             <div className="bg-[#F5EFE6] p-5 rounded-2xl border border-[#E8E2D8] space-y-4">
               <div className="flex items-start space-x-3">
-                <MessageSquare className="w-5 h-5 text-[#D96B27] shrink-0 mt-0.5" />
+                <span className="text-xl shrink-0 mt-0.5">💌</span>
                 <h4 className="text-base font-extrabold text-[#29221D] font-['Manrope',sans-serif]">
                   «{selectedQuestion.question}»
                 </h4>
@@ -502,7 +509,7 @@ export const WorkshopSimulator: React.FC = () => {
               </div>
 
               <div className="p-3 bg-[#15803D]/10 border border-[#15803D]/20 rounded-xl text-[#15803D] text-xs font-bold flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#15803D] shrink-0" />
+                <span>💡</span>
                 <span>Главный вывод: {selectedQuestion.takeaway}</span>
               </div>
             </div>
@@ -550,7 +557,7 @@ export const WorkshopSimulator: React.FC = () => {
             <div className="bg-[#F5EFE6] p-5 rounded-2xl border border-[#E8E2D8] space-y-4 flex flex-col justify-between">
               <div>
                 <h4 className="text-xs font-bold text-[#29221D] uppercase tracking-wider flex items-center gap-1.5">
-                  <Heart className="w-4 h-4 text-[#C0392B]" />
+                  <span>🤝</span>
                   Обмен контактами участников
                 </h4>
                 <p className="text-xs text-[#786C62] mt-1">

@@ -44,6 +44,7 @@ export interface WorkshopRole {
   title: string;
   description: string;
   iconName: string;
+  emoji?: string;
 }
 
 export interface CrisisCard {

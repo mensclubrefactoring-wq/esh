@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { WORKSHOP_ROLES, CRISIS_CARDS, SECRET_DREAMS, COMPENSATION_CARDS, SHAME_QUESTIONS, DISCOVERY_PROMPTS } from '../data/workshopData';
 import { CrisisCard, SecretDreamCard, CompensationCard } from '../types';
-import {
-  Layers, Plus, ShieldAlert, Sparkles, Heart, HelpCircle, FileText, CheckCircle,
-  Home, Stethoscope, Briefcase, Wallet, Users, Baby, Compass, Smile, Eye, Award
-} from 'lucide-react';
 
 import zoomerKitchenImg from '../assets/images/zeast_kitchen_1790070911305.jpg';
 import genzGameImg from '../assets/images/zeast_friends_1790070927191.jpg';
@@ -43,28 +39,35 @@ export const CardDeckView: React.FC = () => {
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'health':
-        return <Stethoscope className="w-3.5 h-3.5 text-[#E11D48]" />;
+        return <span className="text-xs">🩺</span>;
       case 'work':
-        return <Briefcase className="w-3.5 h-3.5 text-[#D97706]" />;
+        return <span className="text-xs">💼</span>;
       case 'money':
-        return <Wallet className="w-3.5 h-3.5 text-[#059669]" />;
+        return <span className="text-xs">🪙</span>;
       case 'relations':
       default:
-        return <Users className="w-3.5 h-3.5 text-[#7C3AED]" />;
+        return <span className="text-xs">🫂</span>;
     }
   };
 
-  const getRoleIcon = (index: number) => {
-    switch (index) {
-      case 0:
-        return <Wallet className="w-5 h-5 text-[#D96B27]" />;
-      case 1:
-        return <Home className="w-5 h-5 text-[#2563EB]" />;
-      case 2:
-        return <Baby className="w-5 h-5 text-[#16A34A]" />;
-      case 3:
+  const getRoleIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'Coins':
+        return <span className="text-xl">🪙</span>;
+      case 'UtensilsCrossed':
+        return <span className="text-xl">🥢</span>;
+      case 'LifeBuoy':
+        return <span className="text-xl">🛟</span>;
+      case 'PartyPopper':
+        return <span className="text-xl">🪩</span>;
+      case 'HeartPulse':
+        return <span className="text-xl">🫀</span>;
+      case 'Telescope':
+        return <span className="text-xl">🔭</span>;
+      case 'FlameKindling':
+        return <span className="text-xl">🪵</span>;
       default:
-        return <Compass className="w-5 h-5 text-[#9333EA]" />;
+        return <span className="text-xl">🧭</span>;
     }
   };
 
@@ -81,7 +84,7 @@ export const CardDeckView: React.FC = () => {
           <div className="space-y-2 max-w-2xl">
             <div className="flex items-center gap-2">
               <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#D96B27] bg-[#D96B27]/10 px-3 py-1 rounded-full border border-[#D96B27]/20 flex items-center gap-1.5">
-                <Smile className="w-3.5 h-3.5" />
+                <span>🗃️</span>
                 Картотека для 18–35 лет
               </span>
               <span className="text-[11px] font-bold text-[#786C62] bg-[#F5EFE6] px-2.5 py-1 rounded-full">
@@ -93,7 +96,7 @@ export const CardDeckView: React.FC = () => {
               Колода игры «Черновик»
             </h2>
             <p className="text-xs sm:text-sm text-[#4A3E37] leading-relaxed font-medium">
-              4 роли семейного совета, 12 бытовых краш-тестов, 8 тайных мечт, 6 купонов выгорания и стыдные вопросы.
+              Роли семейного совета, 12 бытовых краш-тестов, 8 тайных мечт, 6 купонов выгорания и стыдные вопросы.
             </p>
           </div>
 
@@ -103,20 +106,20 @@ export const CardDeckView: React.FC = () => {
             <div className="bg-[#F5EFE6] p-1 rounded-xl border border-[#E8E2D8] flex items-center">
               <button
                 onClick={() => setViewSide('front')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                   viewSide === 'front' ? 'bg-white text-[#29221D] shadow-sm' : 'text-[#786C62] hover:text-[#29221D]'
                 }`}
               >
-                <Eye className="w-3.5 h-3.5 text-[#D96B27]" />
+                <span>🃏</span>
                 Лицо карт
               </button>
               <button
                 onClick={() => setViewSide('back')}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1 ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                   viewSide === 'back' ? 'bg-[#29221D] text-white shadow-sm' : 'text-[#786C62] hover:text-[#29221D]'
                 }`}
               >
-                <Award className="w-3.5 h-3.5 text-[#F59E0B]" />
+                <span>🎴</span>
                 Рубашки колоды
               </button>
             </div>
@@ -125,7 +128,7 @@ export const CardDeckView: React.FC = () => {
               onClick={() => setShowAddModal(true)}
               className="bg-[#D96B27] hover:bg-[#B85418] text-white font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-1.5 transition-all shadow-sm"
             >
-              <Plus className="w-4 h-4" />
+              <span>➕</span>
               <span>Добавить карточку</span>
             </button>
           </div>
@@ -135,24 +138,25 @@ export const CardDeckView: React.FC = () => {
       {/* Tabs Filter */}
       <div className="flex flex-wrap items-center gap-2 border-b border-[#E8E2D8] pb-3 print:hidden">
         {[
-          { id: 'all', label: 'Все колоды (33 карты)' },
-          { id: 'roles', label: '🏠 4 Должности' },
-          { id: 'crises', label: '🚨 12 Бытовых кризисов' },
-          { id: 'dreams', label: '✨ 8 Секретных мечт' },
-          { id: 'compensations', label: '🌱 6 Купонов заботы' },
-          { id: 'questions', label: '✉️ Стыдные вопросы' },
-          { id: 'postcards', label: '📝 Карта открытий' },
+          { id: 'all', label: 'Все колоды (33 карты)', emoji: '🗂️' },
+          { id: 'roles', label: 'Должности совета', emoji: '🪙' },
+          { id: 'crises', label: '12 Бытовых кризисов', emoji: '🪤' },
+          { id: 'dreams', label: '8 Секретных мечт', emoji: '🔮' },
+          { id: 'compensations', label: '6 Купонов заботы', emoji: '🎟️' },
+          { id: 'questions', label: 'Стыдные вопросы', emoji: '💌' },
+          { id: 'postcards', label: 'Карта открытий', emoji: '🧭' },
         ].map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as any)}
-            className={`text-xs font-bold px-3.5 py-2 rounded-xl transition-all ${
+            className={`text-xs font-bold px-3.5 py-2 rounded-xl transition-all flex items-center gap-1.5 ${
               activeTab === tab.id
                 ? 'bg-[#D96B27] text-white shadow-sm'
                 : 'bg-white text-[#786C62] hover:bg-[#F5EFE6] border border-[#E8E2D8]'
             }`}
           >
-            {tab.label}
+            <span className="text-sm">{tab.emoji}</span>
+            <span>{tab.label}</span>
           </button>
         ))}
       </div>
@@ -211,8 +215,8 @@ export const CardDeckView: React.FC = () => {
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b border-[#E8E2D8] pb-2">
                 <h3 className="text-lg font-extrabold text-[#29221D] flex items-center gap-2 font-['Manrope',sans-serif]">
-                  <Layers className="w-5 h-5 text-[#D96B27]" />
-                  Колода №1: Семейные роли (4 Должности)
+                  <span className="text-xl">🪙</span>
+                  Колода №1: Семейные роли (Должности совета)
                 </h3>
                 <span className="text-xs text-[#786C62] font-semibold">Каждые 2 дня происходит ротация</span>
               </div>
@@ -236,7 +240,7 @@ export const CardDeckView: React.FC = () => {
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
                         <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm p-1.5 rounded-lg shadow-sm">
-                          {getRoleIcon(idx)}
+                          {getRoleIcon(role.iconName)}
                         </div>
                       </div>
 
@@ -275,7 +279,7 @@ export const CardDeckView: React.FC = () => {
             <div className="space-y-4 pt-6">
               <div className="flex items-center justify-between border-b border-[#E8E2D8] pb-2">
                 <h3 className="text-lg font-extrabold text-[#29221D] flex items-center gap-2 font-['Manrope',sans-serif]">
-                  <ShieldAlert className="w-5 h-5 text-[#C0392B]" />
+                  <span className="text-xl">🪤</span>
                   Колода №2: Карточки-ловушки (12 Бытовых кризисов)
                 </h3>
                 <span className="text-xs text-[#786C62] font-semibold">12 неожиданных жизненных вводных</span>
@@ -346,7 +350,7 @@ export const CardDeckView: React.FC = () => {
             <div className="space-y-4 pt-6">
               <div className="flex items-center justify-between border-b border-[#E8E2D8] pb-2">
                 <h3 className="text-lg font-extrabold text-[#29221D] flex items-center gap-2 font-['Manrope',sans-serif]">
-                  <Sparkles className="w-5 h-5 text-[#8B5CF6]" />
+                  <span className="text-xl">🔮</span>
                   Колода №3: Секретные мечты из конверта (8 карт)
                 </h3>
                 <span className="text-xs text-[#786C62] font-semibold">Достается тайком на раунде #3</span>
@@ -395,7 +399,7 @@ export const CardDeckView: React.FC = () => {
             <div className="space-y-4 pt-6">
               <div className="flex items-center justify-between border-b border-[#E8E2D8] pb-2">
                 <h3 className="text-lg font-extrabold text-[#29221D] flex items-center gap-2 font-['Manrope',sans-serif]">
-                  <Heart className="w-5 h-5 text-[#16A34A]" />
+                  <span className="text-xl">🎟️</span>
                   Колода №4: Карты-Компенсаторы выгорания (6 Семейных Купонов)
                 </h3>
                 <span className="text-xs text-[#786C62] font-semibold">Используются при угрозе нервного срыва</span>
@@ -441,7 +445,7 @@ export const CardDeckView: React.FC = () => {
             <div className="space-y-4 pt-6">
               <div className="flex items-center justify-between border-b border-[#E8E2D8] pb-2">
                 <h3 className="text-lg font-extrabold text-[#29221D] flex items-center gap-2 font-['Manrope',sans-serif]">
-                  <HelpCircle className="w-5 h-5 text-[#D96B27]" />
+                  <span className="text-xl">💌</span>
                   Колода №5: «Конверт стыдных вопросов» (4 карточки с разбором)
                 </h3>
                 <span className="text-xs text-[#786C62] font-semibold">Анонимные неудобные вопросы и ответы фасилитаторов</span>
@@ -478,7 +482,7 @@ export const CardDeckView: React.FC = () => {
                     </div>
 
                     <div className="p-2.5 bg-[#DCFCE7] text-[#15803D] rounded-xl text-[11px] font-extrabold flex items-center gap-2">
-                      <CheckCircle className="w-4 h-4 shrink-0" />
+                      <span className="text-sm">💡</span>
                       <span>{q.takeaway}</span>
                     </div>
                   </div>
@@ -492,7 +496,7 @@ export const CardDeckView: React.FC = () => {
             <div className="space-y-4 pt-6">
               <div className="flex items-center justify-between border-b border-[#E8E2D8] pb-2">
                 <h3 className="text-lg font-extrabold text-[#29221D] flex items-center gap-2 font-['Manrope',sans-serif]">
-                  <FileText className="w-5 h-5 text-[#2563EB]" />
+                  <span className="text-xl">🧭</span>
                   Колода №6: «Карта открытий» (Финал симуляции)
                 </h3>
                 <span className="text-xs text-[#786C62] font-semibold">Заполняется участниками после рефлексии</span>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { AppView } from '../types';
-import { Gamepad2, Layers, LineChart, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   currentView: AppView;
@@ -17,8 +16,8 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center justify-between h-16">
           {/* Brand / Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-9 h-9 rounded-xl bg-[#D96B27] text-white flex items-center justify-center shadow-sm">
-              <Sparkles className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-[#D96B27] text-white flex items-center justify-center shadow-sm text-base">
+              🧪
             </div>
             <div>
               <h1 className="text-sm sm:text-base font-extrabold tracking-tight text-[#29221D] flex items-center gap-2 font-['Manrope',sans-serif]">
@@ -41,7 +40,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'text-[#786C62] hover:text-[#29221D]'
               }`}
             >
-              <Gamepad2 className="w-4 h-4" />
+              <span className="text-sm">🎲</span>
               <span>Тест-драйв (3 часа)</span>
             </button>
 
@@ -53,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'text-[#786C62] hover:text-[#29221D]'
               }`}
             >
-              <Layers className="w-4 h-4" />
+              <span className="text-sm">🃏</span>
               <span>Карточки игры</span>
             </button>
 
@@ -65,7 +64,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   : 'text-[#786C62] hover:text-[#29221D]'
               }`}
             >
-              <LineChart className="w-4 h-4" />
+              <span className="text-sm">📈</span>
               <span>Инсайты &amp; Опыт</span>
             </button>
           </nav>

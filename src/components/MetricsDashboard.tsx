@@ -1,12 +1,4 @@
 import React, { useState } from 'react';
-import {
-  TrendingUp,
-  Target,
-  Users,
-  Award,
-  Sparkles,
-  HeartHandshake,
-} from 'lucide-react';
 import zoomerSunsetImg from '../assets/images/zeast_sunset_1790070939608.jpg';
 
 export const MetricsDashboard: React.FC = () => {
@@ -48,7 +40,7 @@ export const MetricsDashboard: React.FC = () => {
         <div className="bg-white border border-[#E8E2D8] p-5 rounded-[20px] shadow-sm space-y-1.5">
           <div className="flex items-center justify-between text-xs text-[#786C62] font-semibold">
             <span>Живой формат</span>
-            <Users className="w-4 h-4 text-[#D96B27]" />
+            <span className="text-base">👥</span>
           </div>
           <div className="text-3xl font-black text-[#29221D] font-['Manrope',sans-serif]">
             {participantsCount} человек
@@ -59,7 +51,7 @@ export const MetricsDashboard: React.FC = () => {
         <div className="bg-white border border-[#E8E2D8] p-5 rounded-[20px] shadow-sm space-y-1.5">
           <div className="flex items-center justify-between text-xs text-[#786C62] font-semibold">
             <span>Обмен Telegram-контактами</span>
-            <TrendingUp className="w-4 h-4 text-[#15803D]" />
+            <span className="text-base">🚀</span>
           </div>
           <div className="text-3xl font-black text-[#15803D] font-['Manrope',sans-serif]">
             {telegramExchangePct}%
@@ -70,7 +62,7 @@ export const MetricsDashboard: React.FC = () => {
         <div className="bg-white border border-[#E8E2D8] p-5 rounded-[20px] shadow-sm space-y-1.5">
           <div className="flex items-center justify-between text-xs text-[#786C62] font-semibold">
             <span>Уверенность «Мы справимся»</span>
-            <Award className="w-4 h-4 text-[#D97706]" />
+            <span className="text-base">🏆</span>
           </div>
           <div className="text-3xl font-black text-[#D97706] font-['Manrope',sans-serif]">
             {confidenceScore} / 100
@@ -82,7 +74,7 @@ export const MetricsDashboard: React.FC = () => {
       {/* 3 Core Insights - 50% less text, bullet points */}
       <div className="bg-white border border-[#E8E2D8] rounded-[24px] p-6 space-y-4 shadow-sm">
         <h3 className="text-base sm:text-lg font-black text-[#29221D] flex items-center gap-2 font-['Manrope',sans-serif]">
-          <HeartHandshake className="w-5 h-5 text-[#D96B27]" />
+          <span className="text-lg">🤝</span>
           3 главных инсайта участников
         </h3>
 
@@ -130,7 +122,7 @@ export const MetricsDashboard: React.FC = () => {
 
       {/* Modern Takeaway for Gen Z */}
       <div className="bg-[#D96B27]/10 border border-[#D96B27]/20 p-5 rounded-[20px] text-[#29221D] text-xs sm:text-sm flex items-start gap-3">
-        <Sparkles className="w-5 h-5 text-[#D96B27] shrink-0 mt-0.5" />
+        <span className="text-lg shrink-0 mt-0.5">✨</span>
         <p className="font-medium leading-relaxed">
           <strong className="font-bold text-[#29221D]">Главный вывод:</strong> Семья для зумеров — это не долг перед обществом и не жертва свободой, а комфортный крафтовый союз двух равных партнеров, где каждый имеет право на личное пространство.
         </p>
